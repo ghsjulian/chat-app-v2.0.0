@@ -1,0 +1,549 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root {
+    --dark: #000000;
+    --light: #818e92;
+    --bg: #a1abb6;
+    --text: #23282e;
+    --login-bg: rgb(244, 252, 252);
+    --h3: rgb(0, 149, 149);
+    --error: rgb(255, 1, 1);
+    --success: rgb(0, 187, 14);
+    --white: #ffffff;
+}
+html {
+    font-size: 90%;
+    scroll-behavior: smooth;
+}
+body {
+    background: var(--bg);
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+header {
+    position: fixed;
+    width: 100%;
+    height: 50px;
+    left: 0;
+    right: 0;
+    top: 0;
+    background: var(--white);
+    z-index: 900;
+    border-bottom: 0.5rem solid var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.2rem 0.5rem;
+}
+header h3 {
+    color: var(--h3);
+    font-weight: 600;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+header h3 img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+header .option {
+    display: flex;
+    gap: 1.3rem;
+    align-items: center;
+    justify-content: space-between;
+}
+.option img {
+    width: 35px;
+    height: 35px;
+    object-fit: contain;
+    border-radius: 50%;
+    background: #ebecec;
+    padding: 5px;
+}
+.left-section {
+    position: fixed;
+    width: 20.5%;
+    height: 100vh;
+    left: 0;
+    right: 80%;
+    top: 0;
+    background: var(--white);
+    padding: 2rem 0.5rem;
+    border-radius: 5px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.right-section {
+    position: fixed;
+    width: 30%;
+    height: 100vh;
+    left: 70.5%;
+    right: 0;
+    top: 0;
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 5px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+main {
+    position: fixed;
+    width: 49%;
+    height: 100%;
+    left: 20;
+    right: 30%;
+    background: var(--white);
+    padding: 0;
+    margin: 0 auto;
+    border-radius: 5px;
+}
+.full-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100%;
+    padding: 0;
+    margin: 0.3rem auto;
+    overflow: hidden;
+    z-index: 9000;
+    background: rgba(35, 40, 46, 0.222);
+    mix-blend-mode: multiply;
+}
+.full-page .loading-spinner {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    margin: 0.5rem auto;
+    left: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    mix-blend-mode: multiply;
+}
+.loading-spinner img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+    mix-blend-mode: multiply; /* or screen, lighten, difference, etc. */
+}
+.full-page .loading-spinner p {
+    color: rgb(0, 38, 83);
+    font-weight: 700;
+    margin: 0.5rem auto;
+}
+.left-section .head {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20%;
+    padding-top: 4.8rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 90000;
+    background: var(--white);
+}
+.left-section .head #back {
+    display: none;
+    width: 35px;
+    height: 35px;
+    object-fit: contain;
+}
+.left-section .head #search {
+    width: 35px;
+    height: 35px;
+    object-fit: contain;
+}
+.left-section .head h3 {
+    color: var(--h3);
+    font-weight: 500;
+}
+.left-section .head .search-area {
+    width: 100%;
+    border-radius: 8px;
+    background: var(--white);
+}
+.head .search-area input {
+    outline: none;
+    border: none;
+    padding: 0.8rem 1rem;
+    width: 80%;
+    border-radius: 8px;
+}
+.left-section .user-area {
+    width: 100%;
+    padding: 5rem 0;
+    display: flex;
+    flex-direction: column;
+}
+.user-area a {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.3rem 0;
+    padding: 0.4rem;
+    text-decoration: none;
+    border-bottom: 2px solid #f0f2f4;
+}
+.user-area a div {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    align-items: center;
+}
+.user-area .user img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.user-area .user p {
+    color: var(--text);
+    font-weight: 700;
+    margin: 0 0.5rem;
+    font-size: 16px;
+}
+.user-area .user .add-contact {
+    outline: none;
+    border: none;
+    background: #0082ba;
+    color: var(--white);
+    font-weight: 700;
+    padding: 0.5rem 0.7rem;
+    border-radius: 5px;
+    z-index: 900;
+}
+.right-section .head {
+    display: none;
+}
+
+/*--> Home Page Styling <--*/
+main .home-page {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.home-page img {
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+    margin: 0.3rem auto;
+}
+.home-page h2 {
+    color: #007fc3;
+    margin: 0.3rem auto;
+}
+.home-page p {
+    max-width: 90%;
+    overflow: hidden;
+    text-transform: capitalize;
+    font-weight: 700;
+    color: #3c474e;
+    margin: 0.3rem auto;
+    line-height: 2.3rem;
+    text-align: center;
+}
+.home-page h2 span {
+    color: #c300af;
+}
+
+/*------------------------------*/
+/* Responsive For Middle Screen */
+/*------------------------------*/
+@media (max-width: 1250px) {
+    header {
+        position: fixed;
+        width: 100%;
+        left: 0;
+        right: 0;
+        top: 0;
+    }
+    .left-section {
+        position: fixed;
+        width: 10%;
+        height: 100vh;
+        left: 0;
+        right: 90%;
+        top: 0;
+    }
+    .left-section .head {
+        width: 10%;
+        display: none;
+    }
+    .left-section .head h3 {
+        display: none;
+    }
+    .left-section .user-area .user img {
+        width: 60px;
+        height: 60px;
+    }
+    .left-section .user-area .user p {
+        display: none;
+    }
+    .left-section .user-area .user .add-contact {
+        display: none;
+    }
+    .right-section {
+        position: fixed;
+        width: 30%;
+        height: 100vh;
+        left: 70%;
+        right: 0;
+        top: 0;
+    }
+    main {
+        width: 59%;
+        height: 100%;
+        left: 10%;
+        right: 30%;
+        margin: 0.5rem;
+        padding: 0;
+    }
+}
+
+/*------------------------------*/
+/* Responsive For Mobile Screen */
+/*------------------------------*/
+@media (max-width: 668px) {
+    header {
+        position: fixed;
+        width: 100%;
+        left: 0;
+        right: 0%;
+        top: 0;
+    }
+    .left-section {
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        left: 0;
+        top: 0;
+    }
+    .right-section {
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        left: 0;
+        right: 0;
+        top: 0;
+    }
+    main {
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        left: 0;
+        right: 0;
+        top: 0;
+        margin: 0;
+        padding: 0;
+    }
+    .full-page {
+        top: -0.5rem;
+    }
+    .mobile-left-section {
+        display: block;
+        z-index: 90000;
+        transition: 0.5s ease-in;
+    }
+    .left-section .head {
+        display: flex;
+        width: 100%;
+        padding: 1rem 0.5rem;
+        background: rgb(239, 243, 247);
+    }
+    .left-section .head #back {
+        display: block;
+    }
+    .left-section .head .search-area {
+        width: 90%;
+        border-radius: 8px;
+        background: var(--white);
+    }
+    .head .search-area input {
+        outline: none;
+        border: none;
+        padding: 0.8rem 1rem;
+        width: 90%;
+    }
+    .left-section .head h3 {
+        display: block;
+    }
+
+    .left-section .user-area {
+        padding: 2rem 0;
+    }
+    .left-section .user-area .user p {
+        display: block;
+    }
+    .left-section .user-area .user .add-contact {
+        display: block;
+    }
+    /* Right Sidebar */
+    .mobile-right-section {
+        width: 100%;
+        padding: 0;
+        left: 0;
+        z-index: 90000;
+    }
+    .mobile-right-section .head {
+        position: fixed;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        width: 100%;
+        padding: 0.7rem 0.5rem;
+        background: rgb(239, 243, 247);
+        z-index: 9000;
+    }
+    .mobile-right-section .head #back {
+        display: block;
+        width: 35px;
+        height: 35px;
+        object-fit: cover;
+    }
+}
+
+/*--> Dark Mode Styling <--*/
+
+.dark-mood {
+    background: #474747;
+    color: #b8babb;
+}
+.dark-mood header {
+    background: var(--dark);
+    color: var(--light);
+    border-bottom: 0.3rem solid #474747;
+}
+.dark-mood header h3,
+.dark-mood .head h3 {
+    color: var(--light);
+}
+/* .dark-mood .head {
+    border-bottom: 1px solid var(--light);
+} */
+.dark-mood .head .search-area {
+    border: 1.5px solid var(--light);
+    background: transparent;
+}
+.dark-mood .user-area .user {
+    color: var(--light);
+    border-bottom: 1px solid #272727;
+    color: var(--light);
+}
+.dark-mood .user-area .user p {
+    color: var(--light);
+}
+.dark-mood .left-section .head .search-area input {
+    background: transparent;
+    color: var(--light);
+}
+.dark-mood .right-section .head {
+    background: var(--dark);
+    color: var(--light);
+}
+.dark-mood .right-section .head h3 {
+    color: var(--light);
+}
+.dark-mood .mobile-left-section .head .search-area input {
+    background: transparent;
+    color: var(--light);
+}
+.dark-mood .left-section {
+    background: var(--dark);
+    color: var(--light);
+}
+.dark-mood .right-section {
+    background: var(--dark);
+    color: var(--light);
+}
+
+.dark-mood main {
+    background: var(--dark);
+    color: var(--light);
+}
+.dark-mood .left-section .head {
+    background: var(--dark);
+    color: var(--light);
+}
+.dark-mood .profile-area h3,
+.dark-mood .profile-area p {
+    color: var(--light);
+}
+.dark-mood .chat-page {
+    background: var(--dark);
+    color: var(--light);
+}
+.dark-mood .chat-page .view-img-box {
+    background: #242424;
+    border: 2px solid #232f2d;
+}
+.dark-mood .chat-page .chat-user {
+    background: var(--dark);
+    color: var(--light);
+    border-bottom: 1.8px solid #333434;
+}
+.dark-mood .chat-user h3 {
+    color: var(--light);
+}
+.dark-mood .chat-user .user strong {
+    color: var(--light);
+}
+.dark-mood .chat-page .bottom-bar {
+    background: var(--dark);
+    color: var(--light);
+    border-top: 1.8px solid #333434;
+}
+.dark-mood .receiver {
+    background: #333434;
+    color: #b5cad0;
+}
+.dark-mood .sender {
+    background: #001640;
+    color: #b0babd;
+}
+.dark-mood .chat-page .bottom-bar img {
+    background: #333434;
+    color: #b5cad0;
+}
+.dark-mood .chat-page .bottom-bar .text {
+    background: #333434;
+    color: #b5cad0;
+}
+.dark-mood .home-page p,
+.dark-mood .contact-list a p {
+    color: #b5cad0;
+}
+.dark-mood .contact-list a {
+    border-bottom: 2px solid #333434;
+}
+.dark-mood .profile-area {
+    border-bottom: 2px solid #333434;
+}
+.dark-mood .option img {
+    background: #333434;
+}

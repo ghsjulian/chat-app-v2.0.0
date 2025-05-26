@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chat Bubbles</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .chat-container {
+      width: 360px;
+      max-width: 100%;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      overflow-y: auto;
+      max-height: 80vh;
+    }
+    .chat-bubble {
+      max-width: 75%;
+      padding: 12px 18px;
+      border-radius: 20px;
+      font-size: 14px;
+      line-height: 1.4;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      position: relative;
+      word-wrap: break-word;
+    }
+    /* Sender bubble */
+    .sender {
+      background: #0084ff;
+      color: white;
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
+    }
+    /* Receiver bubble */
+    .receiver {
+      background: #e4e6eb;
+      color: #050505;
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+    }
+    /* Tail for sender */
+    .sender::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      right: -10px;
+      width: 0;
+      height: 0;
+      border-top: 10px solid #0084ff;
+      border-left: 10px solid transparent;
+    }
+    /* Tail for receiver */
+    .receiver::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: -10px;
+      width: 0;
+      height: 0;
+      border-top: 10px solid #e4e6eb;
+      border-right: 10px solid transparent;
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-container">
+    <div class="receiver chat-bubble">
+      Hi! How are you doing today?
+    </div>
+    <div class="sender chat-bubble">
+      I'm good, thanks! How about you?
+    </div>
+    <div class="receiver chat-bubble">
+      Doing well, thank you! Are you free for a meeting tomorrow?
+    </div>
+    <div class="sender chat-bubble">
+      Yes, that sounds great. What time works for you?
+    </div>
+  </div>
+</body>
+</html>
+

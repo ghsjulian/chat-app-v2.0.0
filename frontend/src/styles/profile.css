@@ -1,0 +1,195 @@
+.profile-area {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0;
+    padding: 5rem 0.5rem;
+    border-bottom: 2px solid #dee1de;
+}
+.profile-area .user-img {
+    position: relative;
+}
+.profile-area #img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    padding: 2px;
+    border: 1px solid #00b9c6;
+    border-radius: 50%;
+}
+.profile-area .user-img #upload {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    position: absolute;
+    right: 3px;
+    bottom: 5px;
+}
+.profile-area h3 {
+    color: #424141;
+    margin: 0.3rem auto;
+    font-size: 17px;
+}
+.profile-area p {
+    color: #424141;
+    margin: 0.3rem auto;
+    font-size: 16px;
+    font-weight: 800;
+}
+.profile-area .btn-area {
+    width: 100%;
+    padding: 0.3rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    margin: 0.5rem auto;
+}
+.btn-area button {
+    outline: none;
+    border: none;
+    background: transparent;
+    padding: 0.5rem 1rem;
+    font-weight: 800;
+    border-radius: 5px;
+}
+.btn-area .add-btn {
+    background: #006d9e;
+    color: var(--white);
+}
+.btn-area .added-btn {
+    background: #962700;
+    color: var(--white);
+}
+.btn-area .chat-btn {
+    background: #056f00;
+    color: var(--white);
+}
+.profile-area .info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: left;
+    text-align: justify;
+}
+
+/*------------------------------*/
+/* Responsive For Middle Screen */
+/*------------------------------*/
+@media (max-width: 1250px) {
+    .profile-area .btn-area {
+        padding: 0.5rem 0.8rem;
+        gap: 1.5rem;
+    }
+    .profile-area .btn-area button {
+        padding: 0.5rem 0.7rem;
+        font-size: 15px;
+    }
+    .profile-area .info p {
+        font-size: 15px;
+    }
+}
+.contact-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: left;
+    padding: 1rem 0.5rem;
+}
+.contact-list h2 {
+    margin: 0.5rem auto;
+    text-align: center;
+    color: #0079c3;
+    font-weight: 800;
+}
+.contact-list a {
+    text-decoration: none;
+    margin: 0.6rem 0;
+    padding: 0.1rem 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #e5e4e4;
+}
+.contact-list a div {
+    text-decoration: none;
+    margin: 0.6rem 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+.contact-list a img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.contact-list a p {
+    color: #2e2f2f;
+    font-weight: 800;
+    margin: 0 0.3rem;
+}
+.contact-list a button {
+    outline: none;
+    border: 1px solid #df0600;
+    background: transparent;
+    padding: 0.3rem 0.7rem;
+    font-weight: 800;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.contact-list a button img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+.contact-list a button p {
+    margin: 0 0.2rem;
+    color: #df0600;
+    font-weight: 700;
+}
+/*------------------------------*/
+/* Responsive For small Screen */
+/*------------------------------*/
+@media (max-width: 950px) {
+    .profile-area #img {
+        width: 130px;
+        height: 130px;
+    }
+    .profile-area .btn-area {
+        padding: 0.5rem 0.8rem;
+        gap: 0.5rem;
+        flex-direction: column;
+    }
+    .profile-area .btn-area button {
+        padding: 0.5rem 0.7rem;
+        font-size: 15px;
+    }
+    .profile-area .info p {
+        font-size: 15px;
+    }
+}
+
+/*------------------------------*/
+/* Responsive For Middle Screen */
+/*------------------------------*/
+@media (max-width: 668px) {
+    .profile-area {
+        padding: 2.5rem 0.3rem;
+        margin: 2.5rem 0;
+    }
+    .profile-area .btn-area {
+        padding: 0.5rem 0.8rem;
+        flex-direction: row;
+        gap: 2.5rem;
+    }
+}

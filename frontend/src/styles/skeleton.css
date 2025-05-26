@@ -1,0 +1,117 @@
+:root {
+    --light-sk: #dddbdb;
+    --light-sk-t: #9e9e9e;
+    --dark-sk: #555555;
+}
+.-sk {
+    position: relative;
+    margin-top: 2rem;
+    padding: 0.3rem 0.5rem;
+    border: none;
+}
+
+.-sk .user {
+    display: flex;
+    flex-direction: column;
+    background: var(--light-sk);
+    border-radius: 8px;
+    padding: 1rem 0.5rem;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.15),
+        transparent
+    );
+    animation: shimmer 1s infinite;
+}
+.-sk .user p {
+    margin-top: 0.7rem;
+    width: 93%;
+    background: var(--light-sk-t);
+    padding: 0.7rem;
+    border-radius: 8px;
+    animation: shimmer 0.8s infinite;
+}
+.-sk .user div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+.-sk .user .img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--light-sk-t);
+    animation: shimmer 1.3s infinite;
+}
+.-sk .user span {
+    background: var(--light-sk-t);
+    padding: 0.8rem 0.5rem;
+    width: 65%;
+    border-radius: 8px;
+    animation: shimmer 1s infinite;
+}
+
+/*--> Profile Skeleton Styling <--*/
+.-sk .img {
+    width: 150px;
+    height: 150px;
+    background: var(--dark-sk);
+    border-radius: 50%;
+    animation: shimmer 1.3s infinite;
+}
+.-sk h3 {
+    background: var(--dark-sk);
+    padding: 1rem 0.5rem;
+    width: 50%;
+    border-radius: 8px;
+    margin: 0.7rem auto;
+    animation: shimmer 0.8s infinite;
+}
+.-sk p {
+    background: var(--dark-sk);
+    padding: 0.7rem 0.5rem;
+    width: 80%;
+    border-radius: 8px;
+    margin: 1rem auto;
+    animation: shimmer 1s infinite;
+}
+.-sk .btn-area div {
+    background: var(--dark-sk);
+    padding: 1.2rem 0.5rem;
+    width: 40%;
+    border-radius: 8px;
+    animation: shimmer 0.5s infinite;
+}
+
+
+
+@keyframes shimmer {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+/*------------------------------*/
+/* Responsive For Middle Screen */
+/*------------------------------*/
+@media (max-width: 1250px) {
+    .-sk .user p,
+    .-sk .user span {
+        display: none;
+    }
+}
+
+/*------------------------------*/
+/* Responsive For Middle Screen */
+/*------------------------------*/
+@media (max-width: 668px) {
+    .-sk .user p,
+    .-sk .user span {
+        display: block;
+    }
+}
