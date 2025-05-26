@@ -1,10 +1,10 @@
 // Requiring packages...
 require("dotenv").config();
+const { IO, app, server } = require("./socket/");
 const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const path = require("path");
-const app = express();
 // Environment Variables...
 const PORT = process.env.PORT || 3000;
 const HOST = process.env.HOST;
@@ -38,8 +38,8 @@ app.use("/api", require("./routes/auth.routes"));
 app.use("/api", require("./routes/message.routes"));
 
 // For Seeding Some Dummy Users
-// require("./user.seed")();
+// require("./seeds/user.seed")();
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     console.log(`\n[+]  Server Running -- http://${HOST}:${PORT}`);
 });

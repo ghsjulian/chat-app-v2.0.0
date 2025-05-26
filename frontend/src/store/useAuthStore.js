@@ -1,5 +1,8 @@
 import { create } from "zustand";
 import axios from "../libs/axios";
+import { io } from "socket.io-client";
+import useSocketStore from "./useSocketStore"
+
 
 const useAuthStore = create((set, get) => ({
     authUser: JSON.parse(localStorage.getItem("chat-user")) || null,
@@ -14,6 +17,7 @@ const useAuthStore = create((set, get) => ({
     isFetchingUsers: false,
     getViewUser: {},
     isAdding: false,
+    isProfile : false,
 
     setAuthUser: () => {
         let user = JSON.parse(localStorage.getItem("chat-user")) || null;
@@ -39,6 +43,7 @@ const useAuthStore = create((set, get) => ({
             const res = await axios.get("/auth/check");
             set({ authUser: res.data.user });
             localStorage.setItem("chat-user", JSON.stringify(res.data.user));
+            await useSocketStore.getState().connectSocket();
         } catch (error) {
             console.log("Error in checkAuth Client Side :", error);
             set({ authUser: null });
@@ -47,15 +52,25 @@ const useAuthStore = create((set, get) => ({
         }
     },
     getOneUser: async id => {
+        if (!id) return;
         set({ isCheckingAuth: true });
         try {
             const res = await axios.get("/auth/get-user/" + id);
             set({ getViewUser: res.data.user });
         } catch (error) {
-            console.log("Error in checkAuth Client Side :", error);
+            console.log("Error in getOneUser Client Side :", error);
             set({ getViewUser: null });
         } finally {
             set({ isCheckingAuth: false });
+        }
+    },
+    getUserById: async id => {
+        if (!id) return;
+        try {
+            const res = await axios.get("/auth/get-user/" + id);
+            return res.data.user;
+        } catch (error) {
+            console.log("Error in getUserById Client Side :", error);
         }
     },
     getUsers: async () => {
@@ -88,6 +103,7 @@ const useAuthStore = create((set, get) => ({
                 setTimeout(() => {
                     navigate("/");
                 }, 3000);
+                await useSocketStore.getState().connectSocket();
             }
         } catch (error) {
             showMsg(false, error.response.data.message);
@@ -110,6 +126,7 @@ const useAuthStore = create((set, get) => ({
                 setTimeout(() => {
                     navigate("/");
                 }, 3000);
+               await useSocketStore.getState().connectSocket();
             }
         } catch (error) {
             showMsg(false, error.response.data.message);
@@ -125,6 +142,8 @@ const useAuthStore = create((set, get) => ({
             if (res.data?.success) {
                 set({ authUser: null });
                 localStorage.removeItem("chat-user");
+                localStorage.removeItem("theme");
+                await useSocketStore.getState().disconnectSocket();
             }
         } catch (error) {
             console.log(error.response.data.message);
@@ -160,12 +179,15 @@ const useAuthStore = create((set, get) => ({
                 tag.classList.add("add-btn");
                 tag.textContent = "Add Contact";
             }
-            await get().checkAuth()
+            await get().checkAuth();
         } catch (error) {
             console.log("Error in addContact Client Side :", error);
         } finally {
             set({ isAdding: false });
         }
+    },
+    closeProfile : (type)=>{
+        set({isProfile:type})
     }
 }));
 

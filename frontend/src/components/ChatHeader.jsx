@@ -3,9 +3,13 @@ import { useNavigate, NavLink, useParams } from "react-router-dom";
 import "../styles/chat.css";
 import useMessageStore from "../store/useMessageStore";
 import useAuthStore from "../store/useAuthStore";
+import useSocketStore from "../store/useSocketStore";
+
+
 
 const ChatHeader = () => {
     const { isHeaderOff, setIsHeaderOff, setConversation } = useMessageStore();
+    const { onlineUsers, socket, disconnectSocket } = useSocketStore();
     const navigate = useNavigate();
 
     const {
@@ -63,14 +67,24 @@ const ChatHeader = () => {
                         to={`/profile/${getViewUser?._id}`}
                         className="user"
                     >
-                        <img
-                            src={
-                                getViewUser?.avatar
-                                    ? getViewUser?.avatar
-                                    : "/icons/user.png"
-                            }
-                        />
-                        <strong>{getViewUser?.name}</strong>
+                        <div
+                        style={{
+                                   backgroundColor:`${onlineUsers?.includes(param?.id)? "#27be04" : "#353b3a"}`
+                                }}
+                        className="user-circle">
+                            <div className={onlineUsers?.includes(param?.id)? "online":"offline"}></div>
+                            <img
+                                src={
+                                    getViewUser?.avatar
+                                        ? getViewUser?.avatar
+                                        : "/icons/user.png"
+                                }
+                            />
+                        </div>
+                        <div className="u-text">
+                            <strong>{getViewUser?.name}</strong>
+                            <span>{onlineUsers?.includes(param?.id)? "Online":"Offline"} </span>
+                        </div>
                     </NavLink>
                     <img
                         onClick={closeChat}

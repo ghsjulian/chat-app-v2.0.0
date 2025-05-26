@@ -205,6 +205,11 @@ main {
     text-decoration: none;
     border-bottom: 2px solid #f0f2f4;
 }
+.user-area h2 {
+    text-align: center;
+    margin: 1rem auto;
+    padding: 1.4rem 0;
+}
 .user-area a div {
     display: flex;
     gap: 1rem;
@@ -212,11 +217,41 @@ main {
     align-items: center;
     align-items: center;
 }
-.user-area .user img {
+.user-area a div .user-circle {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    padding: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.user-circle .online {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    top: 1px;
+    right: 1px;
+    border-radius: 50%;
+    background: #27be04;
+}
+.user-circle .offline {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    top: 1px;
+    right: 1px;
+    border-radius: 50%;
+    background: #353b3a;
+}
+
+.user-circle img {
     width: 50px;
     height: 50px;
     object-fit: cover;
     border-radius: 50%;
+    padding: 2px;
 }
 .user-area .user p {
     color: var(--text);

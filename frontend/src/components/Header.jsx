@@ -5,9 +5,11 @@ import UserProfile from "./UserProfile";
 import useAuthStore from "../store/useAuthStore";
 import LoadingSpinner from "../components/LoadingSpinner";
 import useMessageStore from "../store/useMessageStore";
+import useSocketStore from "../store/useSocketStore";
 
 const Header = () => {
     const { isHeaderOff } = useMessageStore();
+    const { onlineUsers, socket, disconnectSocket } = useSocketStore();
     const navigate = useNavigate();
     const param = useParams();
     const location = useLocation();
@@ -23,11 +25,12 @@ const Header = () => {
         setDarkmood,
         setLightmood,
         getOneUser,
-        getViewUser
+        getViewUser,
+        isProfile,
+        closeProfile
     } = useAuthStore();
     const [isContact, setIsContact] = useState(false);
     const [isSearch, setIsSearch] = useState(false);
-    const [isProfile, setIsProfile] = useState(false);
 
     const backfromContact = async () => {
         setIsContact(true);
@@ -50,7 +53,11 @@ const Header = () => {
                 getOneUser(param.id);
             }
         }
+        return () => {
+            disconnectSocket();
+        };
     }, [location]);
+
 
     return (
         <>
@@ -73,7 +80,7 @@ const Header = () => {
                         />
                         <img
                             onClick={() => {
-                                setIsProfile(true);
+                                closeProfile(true);
                             }}
                             src="/icons/user-1.png"
                         />
@@ -133,7 +140,7 @@ const Header = () => {
                 <div className="head">
                     <img
                         onClick={() => {
-                            setIsProfile(false);
+                            closeProfile(false);
                         }}
                         id="back"
                         src="/icons/back-1.png"
@@ -141,7 +148,7 @@ const Header = () => {
                     <h3>Profile Information</h3>
                     <img
                         onClick={() => {
-                            setIsProfile(false);
+                            closeProfile(false);
                         }}
                         id="back"
                         src="/icons/close.png"

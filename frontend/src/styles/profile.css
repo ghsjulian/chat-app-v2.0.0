@@ -11,12 +11,11 @@
 .profile-area .user-img {
     position: relative;
 }
+
 .profile-area #img {
-    width: 150px;
-    height: 150px;
+    width: 155px;
+    height: 155px;
     object-fit: cover;
-    padding: 2px;
-    border: 1px solid #00b9c6;
     border-radius: 50%;
 }
 .profile-area .user-img #upload {
@@ -108,7 +107,7 @@
 }
 .contact-list a {
     text-decoration: none;
-    margin: 0.6rem 0;
+    margin: 0.2rem 0;
     padding: 0.1rem 0.5rem;
     display: flex;
     justify-content: space-between;
@@ -124,9 +123,37 @@
     align-items: center;
     gap: 0.5rem;
 }
+.contact-list a div .user-round {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    padding: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.user-round .online {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    top: -2px;
+    right: -2px;
+    border-radius: 50%;
+    background: #27be04;
+}
+.user-round .offline {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    top: -2px;
+    right: -2px;
+    border-radius: 50%;
+    background: #353b3a;
+}
 .contact-list a img {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     object-fit: cover;
     border-radius: 50%;
 }
@@ -140,12 +167,19 @@
     outline: none;
     border: 1px solid #df0600;
     background: transparent;
-    padding: 0.3rem 0.7rem;
+    padding: 0.4rem 0.7rem;
     font-weight: 800;
     border-radius: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 900;
+    transition: 0.3s ease-in;
+}
+.contact-list a button:hover {
+    background: #005974;
+    border: none;
+    outline: none;
 }
 .contact-list a button img {
     width: 20px;

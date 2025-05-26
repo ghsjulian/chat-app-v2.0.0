@@ -3,6 +3,7 @@ import { useNavigate, NavLink, useParams } from "react-router-dom";
 import "../styles/chat.css";
 import useMessageStore from "../store/useMessageStore";
 import useAuthStore from "../store/useAuthStore";
+import useSocketStore from "../store/useSocketStore";
 import ChatHeader from "../components/ChatHeader";
 import "../styles/skeleton.css";
 import ChatSkeleton from "../skeletons/ChatSkeleton";
@@ -22,6 +23,7 @@ const Chat = () => {
         setIsHeaderOff,
         isFetchingChats
     } = useMessageStore();
+    const {messageListener, socket} = useSocketStore()
     const { authUser } = useAuthStore();
     const fileRef = useRef(null);
     const [files, setFiles] = useState([]);
@@ -73,7 +75,8 @@ const Chat = () => {
 
     useEffect(() => {
         getMessages(id);
-    }, [getMessages, id]);
+        messageListener(id)
+    }, [getMessages, id,messageListener]);
 
     useEffect(() => {
         if (chatRef.current && conversations) {
@@ -99,7 +102,7 @@ const Chat = () => {
                 {conversations?.map((message, index) => (
                     <>
                         <div
-                            key={index}
+                            key={message?._id}
                             className={
                                 message?.sender_id === authUser?._id
                                     ? "sender chat-bubble img-container"
@@ -122,27 +125,6 @@ const Chat = () => {
                         </div>
                     </>
                 ))}
-
-                {/*
-                <div className="sender chat-bubble img-container">
-                    <img
-                        onClick={() => {
-                            previewImg("");
-                        }}
-                        src="/ghs.jpg"
-                    />
-                    <img
-                        onClick={() => {
-                            previewImg("");
-                        }}
-                        src="/ghs.jpg"
-                    />
-                </div>
-                <div className="sender chat-bubble img-container">
-                    <img src="/ghs.jpg" />
-                </div>
-                */}
-
                 {/*Chat Ref For Scroll Down*/}
                 <div ref={chatRef}></div>
                 {/* Showing Chat User Img */}

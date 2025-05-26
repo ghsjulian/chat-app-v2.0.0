@@ -47,7 +47,7 @@ const Profile = () => {
             }
         }
         checkAuth();
-    }, [location, checkAuth]);
+    }, [param.id, checkAuth]);
 
     useEffect(() => {
         fileData ? setImg(fileData) : setImg(getViewUser?.avatar) || null;
@@ -67,14 +67,6 @@ const Profile = () => {
                                 : "/icons/user-2.png"
                         }
                     />
-                    {/*
-                    <img
-                        onClick={() => {
-                            fileRef.current.click();
-                        }}
-                        id="upload"
-                        src="/icons/camera.png"
-                    />*/}
                 </div>
                 <h3>{getViewUser?.name}</h3>
                 <p>{getViewUser?.email}</p>
@@ -88,9 +80,15 @@ const Profile = () => {
                         onClick={e => {
                             addContact(param.id, e.target);
                         }}
-                        className={authUser?.contact?.includes(param?.id) ? "added-btn" : "add-btn"}
+                        className={
+                            authUser?.contact?.includes(param?.id)
+                                ? "added-btn"
+                                : "add-btn"
+                        }
                     >
-                        {authUser?.contact?.includes(param?.id) ? "Remove Contact" : "Add Contact"}
+                        {authUser?.contact?.includes(param?.id)
+                            ? "Remove Contact"
+                            : "Add Contact"}
                     </button>
                     <button
                         onClick={() => {
