@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const liveServer = "https://chat-app-v2-0-0.onrender.com"
+const liveServer = "https://chat-app-v2-0-0.onrender.com/api"
 const localServer = "http://localhost:3000/api"
 
 
