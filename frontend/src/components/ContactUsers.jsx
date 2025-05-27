@@ -10,7 +10,7 @@ const ContactUsers = ({ close }) => {
 
     useEffect(() => {
         getUsers();
-    }, [getUsers]);
+    }, [getUsers,onlineUsers]);
 
     if (isFetchingUsers) {
         return <UserContactsSkeleton />;

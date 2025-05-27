@@ -37,6 +37,14 @@ require("./configs/db.connection.js")();
 app.use("/api", require("./routes/auth.routes"));
 app.use("/api", require("./routes/message.routes"));
 
+if (process.env.NODE_ENV === "production") {
+    const build = path.join(__dirname, "../frontend/dist/");
+    app.use(express.static(build));
+    app.get("/", (req, res) => {
+        res.sendFile(build, "index.html");
+    });
+}
+
 // For Seeding Some Dummy Users
 // require("./seeds/user.seed")();
 

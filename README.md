@@ -50,7 +50,7 @@
 
 -   **Logout From Account**
 
--   **Multer Config**
+-   **Save user in contact list**
 
 -   **Rest API Development**
    
@@ -58,8 +58,15 @@
 
 -   **File System**
 
--   **Mongodb Databases**
+-   **Socket IO Development**
 
+-  **Realtime Chatting Functionalities**
+
+-   **Changing Profile Images** 
+
+-  **Send Images Through Message**
+
+-   **Mongodb Databases**
 
 -   **More...**
 
@@ -72,7 +79,12 @@
 ```bash
 git clone https://github.com/ghsjulian/chat-app-v2.0.0.git
 cd chat-app-v2.0.0
+# Run The Backend Server
 npm install && npm run dev
+# Run The React Frontend
+cd frontend
+npm install && npm run dev
+
 ```
 
 

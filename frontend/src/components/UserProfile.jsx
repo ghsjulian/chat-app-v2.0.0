@@ -5,6 +5,9 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import ProfileSkeleton from "../skeletons/ProfileSkeleton";
 import { NavLink } from "react-router-dom";
 import useSocketStore from "../store/useSocketStore";
+import {getDate} from "../libs/utils"
+
+
 
 const UserProfile = ({ user }) => {
     const { onlineUsers } = useSocketStore();
@@ -57,7 +60,7 @@ const UserProfile = ({ user }) => {
         if (user?.contact) {
             fetchContactUsers();
         }
-    }, [user?.contact, getUserById]);
+    }, [user?.contact, getUserById,onlineUsers]);
 
     if (isUpdatingProfile) return <ProfileSkeleton />;
 
@@ -67,7 +70,7 @@ const UserProfile = ({ user }) => {
                 <div className="user-img">
                     <img
                         id="img"
-                        src={imgFile ? imgFile : "/icons/user-2.png"}
+                        src={imgFile ? imgFile : "/icons/user-1.png"}
                         alt="User  Avatar"
                     />
                     <img
@@ -83,7 +86,7 @@ const UserProfile = ({ user }) => {
                 <p>{user?.email}</p>
                 <div className="info">
                     <p>
-                        Join Since - <span>22 October 2025</span>
+                        Join Since - <span>{getDate(user?.createdAt)}</span>
                     </p>
                 </div>
                 <input

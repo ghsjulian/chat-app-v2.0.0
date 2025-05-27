@@ -53,11 +53,10 @@ const Header = () => {
                 getOneUser(param.id);
             }
         }
-        return () => {
-            disconnectSocket();
-        };
     }, [location]);
-
+    useEffect(() => {
+        checkAuth();
+    }, []);
 
     return (
         <>
@@ -119,7 +118,7 @@ const Header = () => {
                             <input type="text" placeholder="Search A User..." />
                         </div>
                     ) : (
-                        <h3>Your Contacts (5)</h3>
+                        <h3>Registered Users List</h3>
                     )}
                     <img
                         ref={searchRef}

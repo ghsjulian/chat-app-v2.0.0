@@ -7,6 +7,7 @@ import useSocketStore from "../store/useSocketStore";
 import ChatHeader from "../components/ChatHeader";
 import "../styles/skeleton.css";
 import ChatSkeleton from "../skeletons/ChatSkeleton";
+import { getTime } from "../libs/utils";
 
 const Chat = () => {
     const chatRef = useRef(null);
@@ -18,12 +19,14 @@ const Chat = () => {
     const id = param.id;
     const {
         conversations,
+        setConversation,
         sendText,
         getMessages,
         setIsHeaderOff,
         isFetchingChats
     } = useMessageStore();
-    const {messageListener, socket} = useSocketStore()
+    const { messageListener, disconnectSocket, socket, onlineUsers } =
+        useSocketStore();
     const { authUser } = useAuthStore();
     const fileRef = useRef(null);
     const [files, setFiles] = useState([]);
@@ -64,24 +67,35 @@ const Chat = () => {
         setPreviewData(data);
         setPreview(true);
     };
-    const closePreviewImg = data => {
+    const closePreviewImg = () => {
         setPreviewData(null);
         setPreview(false);
     };
 
     useEffect(() => {
         setIsHeaderOff(true);
-    }, [setIsHeaderOff]);
+        setConversation();
+    }, [setIsHeaderOff, setConversation]);
+
+    useEffect(() => {
+        return () => {
+            window.removeEventListener("beforeunload", () => {
+                disconnectSocket();
+            });
+        };
+    }, [disconnectSocket]);
 
     useEffect(() => {
         getMessages(id);
-        messageListener(id)
-    }, [getMessages, id,messageListener]);
+        const listener = messageListener(id);
+        return () => {
+            listener(); // Clean up the listener
+        };
+    }, [id, getMessages, messageListener]);
 
     useEffect(() => {
         if (chatRef.current && conversations) {
             chatRef.current.scrollIntoView({ behavior: "smooth" });
-            setLoaded(false);
         }
     }, [conversations]);
 
@@ -100,30 +114,27 @@ const Chat = () => {
                 )}
                 {isFetchingChats && <ChatSkeleton />}
                 {conversations?.map((message, index) => (
-                    <>
-                        <div
-                            key={message?._id}
-                            className={
-                                message?.sender_id === authUser?._id
-                                    ? "sender chat-bubble img-container"
-                                    : "receiver chat-bubble img-container"
-                            }
-                        >
-                            {message.images && message.images.length != 0
-                                ? message.images.map((img, imgId) => {
-                                      return (
-                                          <img
-                                              key={imgId}
-                                              onClick={() => {
-                                                  previewImg(img);
-                                              }}
-                                              src={img}
-                                          />
-                                      );
-                                  })
-                                : message.message}
-                        </div>
-                    </>
+                    <div
+                        key={message?._id}
+                        className={
+                            message?.sender_id === authUser?._id
+                                ? "sender chat-bubble img-container"
+                                : "receiver chat-bubble img-container"
+                        }
+                    >
+                        {message.images && message.images.length !== 0
+                            ? message.images.map((img, imgId) => (
+                                  <img
+                                      key={imgId}
+                                      onClick={() => {
+                                          previewImg(img);
+                                      }}
+                                      src={img}
+                                  />
+                              ))
+                            : message.message}
+                            <span>{getTime(message.createdAt)}</span>
+                    </div>
                 ))}
                 {/*Chat Ref For Scroll Down*/}
                 <div ref={chatRef}></div>

@@ -3,7 +3,7 @@ import React from "react";
 const Home = () => {
     return (
         <div className="home-page">
-            <img src="/icons/rouse.png" />
+            <img src="/icons/chat-screen.png" />
             <h2>
                 ChatApp Created By - <span>Ghs Julian</span>
             </h2>

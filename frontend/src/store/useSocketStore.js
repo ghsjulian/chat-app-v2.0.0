@@ -4,17 +4,18 @@ import { io } from "socket.io-client";
 import useAuthStore from "./useAuthStore";
 import useMessageStore from "./useMessageStore";
 
-const socket_server_url = "http://localhost:3000";
+const socket_server_url = ["http://localhost:3000","LIVE_SERVER_URL"];
 
 const useSocketStore = create((set, get) => ({
     onlineUsers: [],
     socket: null,
+    
 
     connectSocket: async () => {
-        const user = useAuthStore.getState().authUser ;
+        const user = useAuthStore.getState().authUser;
         if (!user || get().socket?.connected) return;
 
-        const socket = io(socket_server_url, {
+        const socket = io(socket_server_url[0], {
             query: {
                 user_id: user._id
             }

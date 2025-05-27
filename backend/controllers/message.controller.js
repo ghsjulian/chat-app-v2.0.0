@@ -2,8 +2,7 @@ const createNewFile = require("../libs/create.file");
 const path = require("path");
 const fs = require("fs");
 const Message = require("../models/message.model");
-const {IO,USERS,getReceiverSockID} = require("../socket/")
-
+const { IO, USERS, getReceiverSockID } = require("../socket/");
 
 const insertMessage = async (req, res) => {
     try {
@@ -20,14 +19,15 @@ const insertMessage = async (req, res) => {
         await newMessage.save();
         // Socket Will Be Added Here...
         const receiver_sock_id = getReceiverSockID(receiver_id);
-    if (receiver_sock_id) {
-      IO.to(receiver_sock_id).emit("new-message", newMessage);
-    }
-        return res.status(200).json({
-            success: true,
-            status: true,
-            message: newMessage
-        });
+        if (receiver_sock_id) {
+            IO.to(receiver_sock_id).emit("new-message", newMessage);
+        } 
+            return res.status(200).json({
+                success: true,
+                status: true,
+                message: newMessage
+            });
+        
     } catch (error) {
         console.error("Error In insertMessage Controller --> :", error);
         return res.status(505).json({
@@ -55,4 +55,4 @@ const getMessages = async (req, res) => {
     }
 };
 
-module.exports = { insertMessage ,getMessages};
+module.exports = { insertMessage, getMessages };

@@ -256,6 +256,15 @@
     color: #424b4b;
     font-weight: 700;
 }
+.chat-bubble span {
+    position: absolute;
+    width: 70px;
+    bottom: -20px;
+    right: 0;
+    color: #8b9393;
+    font-weight: 700;
+    font-size: 11px;
+}
 .img-container {
     max-width: 75%;
     display: grid;
@@ -279,7 +288,7 @@
     color: #ffffff;
     align-self: flex-end;
     border-bottom-right-radius: 2px;
-    margin: 0.5rem 0;
+    margin: 1.3rem 0;
 }
 /* Receiver bubble */
 .receiver {
@@ -287,9 +296,14 @@
     color: #131b1a;
     align-self: flex-start;
     border-bottom-left-radius: 2px;
-    margin: 0.5rem 0;
+    margin: 1.3rem 0;
 }
-
+.receiver span {
+    left: 0;
+}
+.sender span {
+    right: -17px;
+}
 .sender .chat-bubble .img-container {
     background: transparent;
 }

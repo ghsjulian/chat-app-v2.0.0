@@ -78,7 +78,9 @@ const Signup = () => {
                     type="password"
                     placeholder="Enter Password"
                 />
-               <button onClick={handleLogin} className="login-btn">
+               <button 
+               disabled={isSigningUp ? true:false}
+               onClick={handleLogin} className="login-btn">
                     {isSigningUp ? (
                         <>
                             <div className="loading"></div>

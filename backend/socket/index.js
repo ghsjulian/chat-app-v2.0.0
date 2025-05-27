@@ -9,7 +9,7 @@ const server = http.createServer(app);
 
 const IO = new Server(server, {
     cors: {
-        origin: [process.env.SOCK_URL]
+        origin: [process.env.FRONTEND_SOCK_URL]
     }
 });
 
@@ -31,7 +31,7 @@ IO.on("connection", async socket => {
     socket.on("disconnect", async () => {
         delete USERS[user_id];
         IO.emit("online-users", Object.keys(USERS));
-        console.log(`\n[+] ${user?.name} is connected - ${sock_id}\n`);
+        console.log(`\n[+] ${user?.name} is disconnected - ${sock_id}\n`);
     });
 });
 

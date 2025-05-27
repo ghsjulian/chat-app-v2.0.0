@@ -1,5 +1,5 @@
 require("dotenv").config();
-const User = require("./models/user.model");
+const User = require("../models/user.model");
 
 const seedUsers = [
     // Female Users

@@ -25,7 +25,7 @@ const signupUser = async (req, res) => {
         setCookie(res, token);
         return res.status(201).json({
             user: {
-                id: newUser._id,
+                _id: newUser._id,
                 name: newUser.name,
                 email: newUser.email,
                 avatar: newUser.avatar
@@ -61,7 +61,7 @@ const loginUser = async (req, res) => {
             setCookie(res, token);
             return res.status(201).json({
                 user: {
-                    id: existUser._id,
+                    _id: existUser._id,
                     name: existUser.name,
                     email: existUser.email,
                     avatar: existUser.avatar
@@ -214,21 +214,21 @@ const addContact = async (req, res) => {
             { $push: { contact: req.params?.id } }
         );
         if (result.modifiedCount == 1) {
-        return res.status(200).json({
-            success: true,
-            type:"ADDED",
-            message: "Contact Added Successfully"
-        });
-        }else{
+            return res.status(200).json({
+                success: true,
+                type: "ADDED",
+                message: "Contact Added Successfully"
+            });
+        } else {
             const result = await UserModel.updateOne(
-            { _id: req?.user?.id },
-        { $pull: { contact: req?.params?.id } }
-        );
-        return res.status(200).json({
-            success: true,
-            type:"REMOVED",
-            message: "Contact Remove Successfully"
-        });
+                { _id: req?.user?.id },
+                { $pull: { contact: req?.params?.id } }
+            );
+            return res.status(200).json({
+                success: true,
+                type: "REMOVED",
+                message: "Contact Remove Successfully"
+            });
         }
     } catch (error) {
         console.error("Error In addContact Controllers : ", error);
@@ -247,6 +247,5 @@ module.exports = {
     updateProfile,
     getUsers,
     getOneUser,
-    addContact,
-    
+    addContact
 };

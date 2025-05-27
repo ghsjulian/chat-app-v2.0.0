@@ -10,6 +10,7 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
+
     const showMsg = (type, msg) => {
         if (type) {
             msgRef.current.classList.add("success");
@@ -64,7 +65,9 @@ const Login = () => {
                     type="password"
                     placeholder="Enter Password"
                 />
-                <button onClick={handleLogin} className="login-btn">
+                <button 
+                disabled={isLoggingIn ? true:false}
+                onClick={handleLogin} className="login-btn">
                     {isLoggingIn ? (
                         <>
                             <div className="loading"></div>
@@ -73,6 +76,7 @@ const Login = () => {
                     ) : (
                         <span>Login Now</span>
                     )}
+                    
                 </button>
                 <p>
                     Don't have an account?

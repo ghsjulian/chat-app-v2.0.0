@@ -1,28 +1,31 @@
 {
-  "name": "chat-app",
-  "version": "1.0.0",
-  "main": "backend/server.js",
-  "scripts": {
-    "start": "node backend/server.js",
-    "dev": "nodemon backend/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "ghsjulian@outlook.com",
-  "license": "ISC",
-  "description": "This is advance chat application created with MERN STACK",
-  "devDependencies": {
-    "nodemon": "^3.1.10"
-  },
-  "dependencies": {
-    "bcryptjs": "^3.0.2",
-    "cookie-parser": "^1.4.7",
-    "cors": "^2.8.5",
-    "dotenv": "^16.5.0",
-    "express": "^5.1.0",
-    "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.15.0",
-    "multer": "^2.0.0",
-    "socket.io": "^4.8.1"
-  }
+    "name": "chat-app-v2.0.0",
+    "version": "1.0.0",
+    "main": "backend/server.js",
+    "dev_name": "Ghs Julian",
+    "github": "https://github.com/ghsjulian",
+    "portfolio": "https://ghsresume.netlify.app",
+    "scripts": {
+        "start": "node backend/server.js",
+        "dev": "nodemon backend/server.js",
+        "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend"
+    },
+    "keywords": [],
+    "author": "ghsjulian@outlook.com",
+    "license": "ISC",
+    "description": "This is advance chat application created with MERN STACK",
+    "devDependencies": {
+        "nodemon": "^3.1.10"
+    },
+    "dependencies": {
+        "bcryptjs": "^3.0.2",
+        "cookie-parser": "^1.4.7",
+        "cors": "^2.8.5",
+        "dotenv": "^16.5.0",
+        "express": "^5.1.0",
+        "jsonwebtoken": "^9.0.2",
+        "mongoose": "^8.15.0",
+        "multer": "^2.0.0",
+        "socket.io": "^4.8.1"
+    }
 }

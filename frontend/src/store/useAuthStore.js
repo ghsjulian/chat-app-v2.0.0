@@ -45,7 +45,6 @@ const useAuthStore = create((set, get) => ({
             localStorage.setItem("chat-user", JSON.stringify(res.data.user));
             await useSocketStore.getState().connectSocket();
         } catch (error) {
-            console.log("Error in checkAuth Client Side :", error);
             set({ authUser: null });
         } finally {
             set({ isCheckingAuth: false });
@@ -143,7 +142,7 @@ const useAuthStore = create((set, get) => ({
                 set({ authUser: null });
                 localStorage.removeItem("chat-user");
                 localStorage.removeItem("theme");
-                await useSocketStore.getState().disconnectSocket();
+                useSocketStore.getState().disconnectSocket();
             }
         } catch (error) {
             console.log(error.response.data.message);

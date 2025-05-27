@@ -4,6 +4,8 @@ import useAuthStore from "../store/useAuthStore";
 import LoadingSpinner from "../components/LoadingSpinner";
 import ProfileSkeleton from "../skeletons/ProfileSkeleton";
 import { NavLink, useNavigate, useParams, useLocation } from "react-router-dom";
+import {getDate} from "../libs/utils"
+
 
 const Profile = () => {
     const navigate = useNavigate();
@@ -64,7 +66,7 @@ const Profile = () => {
                         src={
                             getViewUser?.avatar
                                 ? getViewUser?.avatar
-                                : "/icons/user-2.png"
+                                : "/icons/user-1.png"
                         }
                     />
                 </div>
@@ -72,7 +74,7 @@ const Profile = () => {
                 <p>{getViewUser?.email}</p>
                 <div className="info">
                     <p>
-                        Join Since - <span>22 October 2025</span>
+                        Join Since - <span>{getDate(getViewUser?.createdAt)}</span>
                     </p>
                 </div>
                 <div className="btn-area">

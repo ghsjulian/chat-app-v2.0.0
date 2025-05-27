@@ -43,7 +43,7 @@ const ChatHeader = () => {
     const closeChat = () => {
         setIsHeaderOff(false);
         navigate("/");
-        setConversation();
+        //setConversation();
     };
 
     useEffect(() => {
@@ -77,7 +77,7 @@ const ChatHeader = () => {
                                 src={
                                     getViewUser?.avatar
                                         ? getViewUser?.avatar
-                                        : "/icons/user.png"
+                                        : "/icons/user-1.png"
                                 }
                             />
                         </div>
@@ -97,7 +97,7 @@ const ChatHeader = () => {
                         onClick={() => {
                             setIsContact(true);
                         }}
-                        src="/icons/chst-3.png"
+                        src="/icons/chat-3.png"
                     />
                     <img
                         onClick={() => {
