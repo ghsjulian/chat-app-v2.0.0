@@ -5,6 +5,7 @@ const useMessageStore = create((set, get) => ({
     conversations: [],
     isHeaderOff: false,
     isFetchingChats : true,
+    isSent : false,
 
     setIsHeaderOff: type => {
         set({ isHeaderOff: type });
@@ -25,6 +26,7 @@ const useMessageStore = create((set, get) => ({
                 set({
                     conversations: [...currentConversations, res.data.message]
                 });
+                set({isSent:true})
             }
         } catch (error) {
             console.log(
@@ -50,6 +52,22 @@ const useMessageStore = create((set, get) => ({
         } finally {
             set({isFetchingChats:false})
         }
+    },
+    getOneMessage : async(id)=>{
+        try {
+            const res = await axios.get("/message/get-messages/" + id);
+            if (res?.data) {
+                return res?.data
+            } else {
+                return {}
+            }
+        } catch (error) {
+            console.log(
+                "Error in fetching getOneMessage client side --> ",
+                error.message
+            );
+            return {}
+        } 
     }
 }));
 

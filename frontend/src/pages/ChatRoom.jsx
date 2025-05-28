@@ -12,7 +12,9 @@ import { getTime } from "../libs/utils";
 const Chat = () => {
     const chatRef = useRef(null);
     const textRef = useRef(null);
+    const seenRef = useRef(null);
     const param = useParams();
+    const [isReaded, setRead] = useState(false);
     const [isLoaded, setLoaded] = useState(true);
     const [isPreview, setPreview] = useState(false);
     const [previewData, setPreviewData] = useState(null);
@@ -25,8 +27,13 @@ const Chat = () => {
         setIsHeaderOff,
         isFetchingChats
     } = useMessageStore();
-    const { messageListener, disconnectSocket, socket, onlineUsers } =
-        useSocketStore();
+    const {
+        messageListener,
+        disconnectSocket,
+        socket,
+        onlineUsers,
+        setMessageSeen
+    } = useSocketStore();
     const { authUser } = useAuthStore();
     const fileRef = useRef(null);
     const [files, setFiles] = useState([]);
@@ -78,20 +85,20 @@ const Chat = () => {
     }, [setIsHeaderOff, setConversation]);
 
     useEffect(() => {
+        getMessages(id);
+        const listener = messageListener(id);
+        return () => {
+            listener(); // Clean up the listener
+        };
+    }, [id, getMessages, setMessageSeen, messageListener]);
+
+    useEffect(() => {
         return () => {
             window.removeEventListener("beforeunload", () => {
                 disconnectSocket();
             });
         };
     }, [disconnectSocket]);
-
-    useEffect(() => {
-        getMessages(id);
-        const listener = messageListener(id);
-        return () => {
-            listener(); // Clean up the listener
-        };
-    }, [id, getMessages, messageListener]);
 
     useEffect(() => {
         if (chatRef.current && conversations) {
@@ -133,9 +140,34 @@ const Chat = () => {
                                   />
                               ))
                             : message.message}
-                            <span>{getTime(message.createdAt)}</span>
+                        <span>{getTime(message.createdAt)}</span>
                     </div>
                 ))}
+
+                {conversations?.length == 0 && (
+                    <div className="no-chat">
+                        <img src="/icons/no-chat.png" />
+                        <h3>No Chats Found</h3>
+                        <p>
+                            You don't have chats yet , start sending messages.
+                        </p>
+                    </div>
+                )}
+
+                {/*Set Message Read Status : Seen / Unseen */}
+{
+/*
+                {!isFetchingChats &&
+                    conversations?.length !== 0 &&
+                    authUser?._id !==
+                        conversations[conversations?.length - 1]
+                            ?.receiver_id && (
+                        <span ref={seenRef} className={"is-readed"}>
+                            {conversations[conversations?.length - 1]?.message}
+                        </span>
+                    )}
+*/}
+
                 {/*Chat Ref For Scroll Down*/}
                 <div ref={chatRef}></div>
                 {/* Showing Chat User Img */}

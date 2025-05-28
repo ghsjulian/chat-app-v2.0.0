@@ -46,7 +46,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // For Seeding Some Dummy Users
-// require("./seeds/user.seed")();
+ // require("./seeds/user.seed")();
 
 server.listen(PORT, () => {
     console.log(`\n[+]  Server Running -- http://${HOST}:${PORT}`);

@@ -9,7 +9,7 @@ import useSocketStore from "../store/useSocketStore";
 
 const Header = () => {
     const { isHeaderOff } = useMessageStore();
-    const { onlineUsers, socket, disconnectSocket } = useSocketStore();
+    const { onlineUsers,getLastMessages, socket, disconnectSocket } = useSocketStore();
     const navigate = useNavigate();
     const param = useParams();
     const location = useLocation();
@@ -57,7 +57,12 @@ const Header = () => {
     useEffect(() => {
         checkAuth();
     }, []);
-
+    
+    /*
+    useEffect(() => {
+      getLastMessages()
+    }, [getLastMessages,onlineUsers]);
+*/
     return (
         <>
             {!isHeaderOff && (

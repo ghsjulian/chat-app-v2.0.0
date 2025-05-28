@@ -21,13 +21,12 @@ const insertMessage = async (req, res) => {
         const receiver_sock_id = getReceiverSockID(receiver_id);
         if (receiver_sock_id) {
             IO.to(receiver_sock_id).emit("new-message", newMessage);
-        } 
-            return res.status(200).json({
-                success: true,
-                status: true,
-                message: newMessage
-            });
-        
+        }
+        return res.status(200).json({
+            success: true,
+            status: true,
+            message: newMessage
+        });
     } catch (error) {
         console.error("Error In insertMessage Controller --> :", error);
         return res.status(505).json({
@@ -47,7 +46,9 @@ const getMessages = async (req, res) => {
                 { sender_id: sender, receiver_id: receiver },
                 { sender_id: receiver, receiver_id: sender }
             ]
-        });
+        }).sort({ createdAt: 1 });
+        
+
         return res.status(200).json(messages);
     } catch (error) {
         console.log("Error in getMessages controller: ", error.message);

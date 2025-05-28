@@ -91,20 +91,26 @@ const updateProfile = async (req, res) => {
         if (!avatar) {
             throw new Error("Invalid Image File");
         }
-        const folder = path.join(__dirname, "../uploads/");
+        /* It was creating a new image file from base64 image string 
+        but when i host the project on render it is also working 
+        but after some times the server automatically remove the image file from server !
+        so i will add push the image data in to database directly as base64*/
+        /*
+         const folder = path.join(__dirname, "../uploads/");
         // Remove the data URL prefix if present (e.g. "data:image/jpeg;base64,")
         const base64Data = avatar
             .replace(/^data:image\/jpeg;base64,/, "")
             .replace(/^data:image\/jpg;base64,/, "")
-            .replace(/^data:image\/png;base64,/, ""); // allow png fallback
+            .replace(/^data:image\/png;base64,/, "");
+            // allow png fallback
         // Create a buffer from the base64 string
         const imgBuffer = Buffer.from(base64Data, "base64");
-
         fs.writeFileSync(folder + req?.user?.id + ".jpg", imgBuffer);
-        // Update Also In Database
+        */
+        
         const updatedUser = await UserModel.findByIdAndUpdate(
             req?.user?.id,
-            { avatar: `${process.env.API}/uploads/${req?.user?.id}.jpg` },
+            { avatar: avatar},
             { new: true }
         );
         return res.json({

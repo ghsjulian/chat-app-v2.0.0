@@ -210,12 +210,24 @@ main {
     margin: 1rem auto;
     padding: 1.4rem 0;
 }
+.user-area a {
+    position: relative;
+}
 .user-area a div {
     display: flex;
     gap: 1rem;
-    justify-content: center;
-    align-items: center;
-    align-items: center;
+    justify-content: left;
+    align-items: left;
+    align-items: left;
+}
+.user-area a div .mid-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
+    align-items: left;
+    text-align: justify;
+    padding: 6px 0;
 }
 .user-area a div .user-circle {
     position: relative;
@@ -253,12 +265,49 @@ main {
     border-radius: 50%;
     padding: 2px;
 }
-.user-area .user p {
+.user-area .user div .mid-flex p {
     color: var(--text);
     font-weight: 700;
-    margin: 0 0.5rem;
     font-size: 16px;
+    text-align: justify;
+    margin: 0;
 }
+.user-area .user div .mid-flex span {
+    color: #8b9393;
+    font-weight: 500;
+    margin: 0;
+    max-width: 140px;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+}
+.user-area a .time {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    color: #8b9393;
+    font-weight: 700;
+    font-size: 14px;
+}
+.user-area a .new {
+    position: absolute;
+    top: 20px;
+    right: 5px;
+    width: 25px;
+    height: 25px;
+    background: #006bac;
+    color: #ffffff;
+    font-weight: 700;
+    border-radius: 50%;
+    padding: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
 .user-area .user .add-contact {
     outline: none;
     border: none;

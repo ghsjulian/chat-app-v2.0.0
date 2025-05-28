@@ -10,6 +10,29 @@
     display: flex;
     flex-direction: column;
 }
+.chat-page .no-chat {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 1rem auto;
+    padding: 1rem;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.no-chat img {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+}
+.no-chat h3 {
+    color: #006471;
+    margin: 0.5rem auto;
+}
+.no-chat p {
+    color: #414a4b;
+    font-weight: 700;
+}
 
 .chat-page .view-img-box {
     position: fixed;
@@ -243,7 +266,36 @@
 }
 
 /*--> Creating Chat Bubbles --*/
-
+.is-not-readed {
+    position: relative;
+    width: 65px;
+    bottom: 0;
+    right: 0;
+    left: 80%;
+    border: 0.1px solid #006acd;
+    color: #006acd;
+    text-align: right;
+    border-radius: 5px;
+    font-weight: 300;
+    font-size: 12px;
+    padding: 1px 2px;
+    text-align: center;
+}
+.is-readed {
+    position: relative;
+    width: 45px;
+    bottom: 0;
+    right: 0;
+    left: 86%;
+    border: 0.1px solid #009646;
+    color: #009646;
+    text-align: right;
+    border-radius: 5px;
+    font-weight: 300;
+    font-size: 12px;
+    padding: 1px 2px;
+    text-align: center;
+}
 .chat-bubble {
     max-width: 75%;
     padding: 13px 20px;
@@ -254,7 +306,7 @@
     position: relative;
     word-wrap: break-word;
     color: #424b4b;
-    font-weight: 700;
+    font-weight: 600;
 }
 .chat-bubble span {
     position: absolute;
