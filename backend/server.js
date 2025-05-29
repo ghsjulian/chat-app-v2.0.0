@@ -17,7 +17,7 @@ app.use(express.json({ limit: "500mb" }));
 // Setup  CORS Configuration...
 app.use(
     cors({
-        origin: ["http://localhost:5000"],
+        origin: ["http://localhost:5000", process.env.API],
         methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
         allowedHeaders: ["Content-Type", "Authorization"],
         credentials: true,
@@ -49,5 +49,5 @@ if (process.env.NODE_ENV === "production") {
  // require("./seeds/user.seed")();
 
 server.listen(PORT, () => {
-    console.log(`\n[+]  Server Running -- http://${HOST}:${PORT}`);
+    console.log(`\n[+]  Server Running -- ${process.env.API}:${PORT}`);
 });
