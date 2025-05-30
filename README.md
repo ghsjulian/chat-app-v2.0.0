@@ -20,7 +20,7 @@
 
 ##### Developer Email : <a href="email:ghsjulian@outlook.com" target="_blank"> ghsjulian@outlook.com </a>
 
-##### Live Demo : <a href="https://" target="_blank">View Demo </a>
+##### Live Demo : <a href="https://chat-app-v2-0-0.onrender.com/" target="_blank">View Demo </a>
 
 ##### Start Date : 22 May 2025
 
