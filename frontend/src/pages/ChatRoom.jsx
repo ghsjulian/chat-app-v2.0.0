@@ -90,7 +90,7 @@ const Chat = () => {
         return () => {
             listener(); // Clean up the listener
         };
-    }, [id, getMessages, setMessageSeen, messageListener]);
+    }, [id, getMessages, messageListener]);
 
     useEffect(() => {
         return () => {
@@ -120,6 +120,20 @@ const Chat = () => {
                     </div>
                 )}
                 {isFetchingChats && <ChatSkeleton />}
+                
+                
+                { !isFetchingChats && conversations?.length == 0 && (
+                    <div className="no-chat">
+                        <img src="/icons/no-chat.png" />
+                        <h3>No Chats Found</h3>
+                        <p>
+                            You don't have chats yet , start sending messages.
+                        </p>
+                    </div>
+                )}
+                
+                
+                
                 {conversations?.map((message, index) => (
                     <div
                         key={message?._id}
@@ -144,19 +158,10 @@ const Chat = () => {
                     </div>
                 ))}
 
-                {conversations?.length == 0 && (
-                    <div className="no-chat">
-                        <img src="/icons/no-chat.png" />
-                        <h3>No Chats Found</h3>
-                        <p>
-                            You don't have chats yet , start sending messages.
-                        </p>
-                    </div>
-                )}
+                
 
                 {/*Set Message Read Status : Seen / Unseen */}
-{
-/*
+                {/*
                 {!isFetchingChats &&
                     conversations?.length !== 0 &&
                     authUser?._id !==

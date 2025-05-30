@@ -18,7 +18,7 @@ const useSocketStore = create((set, get) => ({
         const user = useAuthStore.getState().authUser;
         if (!user || get().socket?.connected) return;
 
-        const socket = io(socket_server_url[0], {
+        const socket = io(socket_server_url[1], {
             query: {
                 user_id: user._id
             }
